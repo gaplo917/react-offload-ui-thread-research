@@ -23,12 +23,33 @@ function App() {
     <AppCtx.Provider value={{ input, setInput, mode, setMode }}>
       <div className="App">
         <h1>React Offload UI Thread Research</h1>
-        <h3>Animation to track UI blocking workload</h3>
-        <Box textAlign="center" alignContent="center">
-          <CircularProgress />
+        <Box>
+          <p>
+            GitHub Repository:{' '}
+            <a
+              href="https://github.com/gaplo917/react-offload-ui-thread-research"
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://github.com/gaplo917/react-offload-ui-thread-research
+            </a>
+          </p>
+          <p>
+            For detail explanations and more technical R&D, you can visit{' '}
+            <a
+              href="https://www.patreon.com/gaplotech"
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://www.patreon.com/gaplotech
+            </a>
+          </p>
         </Box>
+        <h1>
+          Parameters <CircularProgress />
+        </h1>
         <p>
-          Start <b>tuning</b> the parameters to see the performance!
+          Start <b>tuning</b> the parameters to see the UI blocking!{' '}
         </p>
         <SomeInput />
         <Box px={2}>
@@ -44,12 +65,6 @@ function App() {
         {mode === AppMode.webWorkerSingleton && <SomeListSingleton />}
         {mode === AppMode.webWorkerDedicated && <SomeListDedicatedWorker />}
         {mode === AppMode.webWorkerPool && <SomeListWorkerPool />}
-        <Box pt={4}>
-          For detail explanations and more technical R&D, you could visit{' '}
-          <a href="https://www.patreon.com/gaplotech">
-            https://www.patreon.com/gaplotech
-          </a>
-        </Box>
       </div>
     </AppCtx.Provider>
   )

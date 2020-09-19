@@ -24,7 +24,7 @@ function TabContent({ base, pow, style }: TabContentProps) {
     pow,
   ])
   return (
-    <p style={{ padding: 16, ...style }}>
+    <p style={{ padding: 8, ...style }}>
       <ErrorBoundary
         key={`${base}-${pow}`}
         fallback={<ErrorMessage message={`cannot load ${base},${pow}`} />}

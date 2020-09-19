@@ -17,7 +17,7 @@ function TabContent({ base, pow, style, isScrolling }: TabContentProps) {
         return `compute(${base}, ${pow}) = ${result}`
       }, [base, pow])
   return (
-    <p style={{ padding: 16, ...style }}>
+    <p style={{ padding: 8, ...style }}>
       <span>{result}</span>
     </p>
   )
