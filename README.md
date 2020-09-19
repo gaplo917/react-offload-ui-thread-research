@@ -48,6 +48,10 @@ research. To access the complete research findings, you could access in
 
 ## Getting Started
 
+[![Edit gaplo917/react-offload-ui-thread-research](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gaplo917/react-offload-ui-thread-research/tree/master/?fontsize=14&hidenavigation=1)
+
+or try locally
+
 ```
 git clone https://github.com/gaplo917/react-offload-ui-thread-research.git
 
