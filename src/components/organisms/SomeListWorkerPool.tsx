@@ -1,41 +1,42 @@
 import React, { useMemo, useState } from 'react'
 // @ts-ignore
-import ComputeWorker from 'comlink-loader!../workers/compute.worker'
+import ComputeWorker from 'comlink-loader!../../workers/compute.worker'
 import { Suspendable, useSuspendableData } from 'react-suspendable-contract'
-import { ErrorBoundary } from './ErrorBoundary'
-import VirtualList from './VirtualList'
+import { ErrorBoundary } from '../atom/ErrorBoundary'
+import VirtualList from '../molecules/VirtualList'
 import TextField from '@material-ui/core/TextField'
+import Loading from '../atom/Loading'
+import ComputeResult from '../atom/ComputeResult'
+import ComputeErrorMessage from '../atom/ComputeErrorMessage'
 
 interface TabContentProps {
+  index: number
   base: number
   pow: number
   style: React.CSSProperties
   worker: ComputeWorker
 }
 
-const Loading = () => <span>loading</span>
-
-const ErrorMessage = ({ message }: { message: string }) => (
-  <span>{message}</span>
-)
-
-function TabContent({ base, pow, style, worker }: TabContentProps) {
-  const suspendableData = useSuspendableData(() => worker.compute(base, pow), [
-    base,
-    pow,
-  ])
+function TabContent({ index, base, pow, style, worker }: TabContentProps) {
+  const suspendableData = useSuspendableData<number>(
+    () => worker.compute(base, pow),
+    [base, pow],
+  )
   return (
     <p style={{ padding: 8, ...style }}>
       <ErrorBoundary
         key={`${base}-${pow}`}
-        fallback={<ErrorMessage message={`cannot load ${base},${pow}`} />}
+        fallback={<ComputeErrorMessage index={index} base={base} pow={pow} />}
       >
-        <React.Suspense fallback={<Loading />}>
+        <React.Suspense fallback={<Loading index={index} />}>
           <Suspendable data={suspendableData}>
             {(data) => (
-              <span>
-                compute({base}, {pow}) = {data}
-              </span>
+              <ComputeResult
+                index={index}
+                base={base}
+                pow={pow}
+                result={data}
+              />
             )}
           </Suspendable>
         </React.Suspense>
@@ -72,6 +73,7 @@ export default function SomeListWorkerPool() {
         rowRendererProvider={(base, pow) => ({ key, index, style }) => (
           <TabContent
             key={key}
+            index={index}
             base={base}
             pow={pow}
             style={style}

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import { AppCtx, AppMode } from './AppCtx'
+import { AppCtx, AppMode } from '../../contexts/AppCtx'
 import { FormControl } from '@material-ui/core'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'

@@ -1,5 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { InputModel } from './models'
+
+export interface InputModel {
+  base: number
+  pow: number
+  rowCount: number
+}
 
 export enum AppMode {
   blocking,

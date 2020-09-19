@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
-import React, { ReactElement, ReactNode, useContext } from 'react'
-import { AppCtx } from './AppCtx'
+import React, { useContext } from 'react'
+import { AppCtx } from '../../contexts/AppCtx'
 import { List, ListRowRenderer } from 'react-virtualized'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
