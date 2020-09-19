@@ -1,0 +1,75 @@
+{
+  "name": "react-webpack-typescript-starter",
+  "version": "0.1.0",
+  "description": "Starter kit for React, Webpack (with Hot Module Replacement), Typescript and Babel.",
+  "keywords": [
+    "react",
+    "webpack",
+    "typescript",
+    "babel",
+    "sass",
+    "hmr",
+    "starter",
+    "boilerplate"
+  ],
+  "author": "Viktor Persson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikpe/react-webpack-typescript-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vikpe/react-webpack-typescript-starter/issues"
+  },
+  "homepage": "https://github.com/vikpe/react-webpack-typescript-starter",
+  "scripts": {
+    "build": "yarn run clean-dist && webpack -p --config=configs/webpack/prod.js",
+    "clean-dist": "rimraf dist/*",
+    "lint": "eslint './src/**/*.{js,ts,tsx}' --quiet",
+    "start": "yarn run start-dev",
+    "start-dev": "webpack-dev-server --config=configs/webpack/dev.js",
+    "start-prod": "yarn run build && node express.js",
+    "test": "jest --coverage --watchAll --config=configs/jest.json"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@types/node": "^14.0.23",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.3.0",
+    "prettier": "^2.0.5",
+    "react": "^17.0.0-rc.1",
+    "react-dom": "^17.0.0-rc.1",
+    "react-hot-loader": "^4.12.21",
+    "rimraf": "^3.0.2",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.3",
+    "typescript": "^3.9.7",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@types/react-virtualized": "^9.21.10",
+    "comlink-loader": "^2.0.0",
+    "react-suspendable-contract": "^0.1.1",
+    "react-virtualized": "^9.22.2"
+  }
+}
