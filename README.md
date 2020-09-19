@@ -1,51 +1,41 @@
-# React Webpack Typescript Starter
-> Minimal starter with hot module replacement (HMR) for rapid development.
+# React Offload UI Thread Research
 
-* **[React](https://facebook.github.io/react/)** (16.x)
-* **[Webpack](https://webpack.js.org/)** (4.x)
-* **[Typescript](https://www.typescriptlang.org/)** (3.x)
-* **[Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/)** ([React Hot Loader](https://github.com/gaearon/react-hot-loader))
-* Production build script (Webpack)
-* Image loading/minification ([Image Webpack Loader](https://github.com/tcoopman/image-webpack-loader))
-* [SASS](http://sass-lang.com/) support
-* Code linting ([ESLint](https://github.com/eslint/eslint)) and formatting ([Prettier](https://github.com/prettier/prettier))
-* Test framework ([Jest](https://facebook.github.io/jest/))
+When we develop a frontend application, we undoubtedly offload all kinds of I/O,
+computational tasks from UI thread to prevent UI thread is too busy and become
+unresponsive.
 
-## Installation
-1. Clone/download repo
-2. `yarn install` (or `npm install` for npm)
+I think 120Hz Web browsing is coming, the higher fps the shorter time for UI thread to
+process. Consider the 60Hz to 120Hz change, the "smooth UI" requirement changed from
+16.67ms to 8.33ms, that halve the time we got from previous decade! Let alone, the
+business requirements and transition animations also become more and more complex.
 
-## Usage
-**Development**
+> An I/O call is non-blocking doesn't mean that it doesn't use the UI thread CPU time.
 
-`yarn run start-dev`
+Most of the time we work on a Web frontend developments, we nearly do everything on UI
+thread like fragmented REST api call and aggregation, large GraphQL query data
+transformation, array sorting and filtering...etc. It is because creating a web-worker
+with some existing libraries is **painful** and coding in a complete message driven style
+is **buggy and time-consuming**.
 
-* Build app continuously (HMR enabled)
-* App served @ `http://localhost:8080`
+As the [ComLink abstraction](https://github.com/GoogleChromeLabs/comlink)(turn a web
+worker to RPC-style function call) arise. I think it is time to adopt web worker
+**_completely_** - completely decouple a data accessing layer that use background thread
+for **ALL** I/O and data processing and then return to the UI thread. Just like how we
+write a standard frontend application in other platforms.
 
-**Production**
+This project is a
+[Comlink loader (Webpack)](https://github.com/GoogleChromeLabs/comlink-loader) decision
+research. To access the complete research findings, you could access in
+[patreon](https://www.patreon.com/gaplotech).
 
-`yarn run start-prod`
+## Getting Started
 
-* Build app once (HMR disabled) to `/dist/`
-* App served @ `http://localhost:3000`
+```
+git clone https://github.com/gaplo917/react-offload-ui-thread-research.git
 
----
+cd react-offload-ui-thread-research
+yarn intall
 
-**All commands**
-
-Command | Description
---- | ---
-`yarn run start-dev` | Build app continuously (HMR enabled) and serve @ `http://localhost:8080`
-`yarn run start-prod` | Build app once (HMR disabled) to `/dist/` and serve @ `http://localhost:3000`
-`yarn run build` | Build app to `/dist/`
-`yarn run test` | Run tests
-`yarn run lint` | Run linter
-`yarn run lint --fix` | Run linter and fix issues
-`yarn run start` | (alias of `yarn run start-dev`)
-
-**Note**: replace `yarn` with `npm` in `package.json` if you use npm.
-
-## See also
-* [React Webpack Babel Starter](https://github.com/vikpe/react-webpack-babel-starter)
-* [Isomorphic Webapp Starter](https://github.com/vikpe/isomorphic-webapp-starter)
+# start the demo
+yarn start
+```
