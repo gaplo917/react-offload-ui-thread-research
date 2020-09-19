@@ -13,8 +13,8 @@ import { Box } from '@material-ui/core'
 
 function App() {
   const [input, setInput] = useState<InputModel>({
-    base: 500,
-    pow: 2,
+    base: 200,
+    pow: 2.5,
     rowCount: 100,
   })
   const [mode, setMode] = useState<AppMode>(AppMode.blocking)
@@ -43,6 +43,12 @@ function App() {
             >
               https://www.patreon.com/gaplotech
             </a>
+          </p>
+          <p>
+            <i>
+              * The progress loading dialog is to track UI blocking occurrence
+              visually
+            </i>
           </p>
         </Box>
         <h1>
