@@ -2,25 +2,27 @@
 
 When we develop a frontend application, we undoubtedly offload all kinds of I/O,
 computational tasks from UI thread to prevent UI thread is too busy and become
-unresponsive.
+unresponsive. However, this rule doesn't apply to current web development.
 
 ### 120Hz is coming
 
-I think 120Hz Web browsing is coming, the higher fps the shorter time for UI thread to
-process. Consider the 60Hz to 120Hz change, the "smooth UI" requirement changed from
-16.67ms to 8.33ms, that halve the time we got from previous decade! Let alone, the
-business requirements and transition animations also become more and more complex.
+120Hz Web browsing is coming, the higher fps the shorter time for UI thread to process.
+Consider the 60Hz to 120Hz change, the "smooth UI" process cycle time changed from 16.67ms
+to 8.33ms, that halve the time we got from previous decade!
 
 > An I/O call is non-blocking on UI thread doesn't mean that it doesn't use the UI thread
 > CPU time.
+
+In addition, the business requirements and transition animations also become more and more
+complex. If you need to build a smooth Web application, using a web worker is unavoidable.
 
 ### Painful and Time-consuming web worker development
 
 Most of the time we work on a Web frontend developments, we are tempted to do everything
 on UI thread like:
 
-- calling fragmented REST call and then aggregate together
-- calling a large GraphQL query and then apply data transformation, array sorting and
+- calling fragmented REST call and then **aggregate together**
+- calling a large GraphQL query and then apply **data transformation**, array sorting and
   filtering...etc.
 
 It is because:
@@ -38,12 +40,14 @@ think it is time to start thinking to adopt web worker **_in all cases_** - comp
 decouple a data accessing layer that completely use browser's background thread for
 **ALL** I/O and data processing and then return to the UI thread.
 
-Nothing is new, this was how we write a standard frontend application in other platforms
-since multi-threaded CPU appeared.
+Nothing is new, this was how we wrote a standard frontend application in other
+platforms(iOS, Android, Windows, macOS, JVM) since multi-threaded CPU appeared.
 
 This project is a
 [Comlink loader (Webpack)](https://github.com/GoogleChromeLabs/comlink-loader) decision
-research. To access the complete research findings, you could access in
+research.
+
+To access the complete research findings, you could access in
 [patreon](https://www.patreon.com/gaplotech).
 
 ## Getting Started
