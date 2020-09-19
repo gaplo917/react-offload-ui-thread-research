@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 // @ts-ignore
 import ComputeWorker from 'comlink-loader!../workers/compute.worker'
 import { Suspendable, useSuspendableData } from 'react-suspendable-contract'
 import { ErrorBoundary } from './ErrorBoundary'
 import VirtualList from './VirtualList'
+import TextField from '@material-ui/core/TextField'
 
 interface TabContentProps {
   base: number
@@ -44,22 +45,40 @@ function TabContent({ base, pow, style, worker }: TabContentProps) {
 }
 
 export default function SomeListWorkerPool() {
-  const poolSize = 20
-  const workerPool = new Array(poolSize)
-    .fill(null)
-    .map(() => new ComputeWorker())
+  const [poolSize, setPoolSize] = useState(4)
+
+  const workerPool = useMemo(
+    () => new Array(poolSize).fill(null).map(() => new ComputeWorker()),
+    [poolSize],
+  )
 
   return (
-    <VirtualList
-      rowRendererProvider={(base, pow) => ({ key, index, style }) => (
-        <TabContent
-          key={key}
-          base={base}
-          pow={pow}
-          style={style}
-          worker={workerPool[index % poolSize]}
-        />
-      )}
-    />
+    <>
+      <VirtualList
+        headerComp={() => (
+          <TextField
+            id="standard-basic"
+            label="Worker Pool Size"
+            required
+            type="number"
+            variant="outlined"
+            defaultValue={poolSize}
+            inputProps={{ step: 1 }}
+            onChange={(event: React.ChangeEvent<{ value: string }>) => {
+              setPoolSize(Number(event.target.value))
+            }}
+          />
+        )}
+        rowRendererProvider={(base, pow) => ({ key, index, style }) => (
+          <TabContent
+            key={key}
+            base={base}
+            pow={pow}
+            style={style}
+            worker={workerPool[index % poolSize]}
+          />
+        )}
+      />
+    </>
   )
 }

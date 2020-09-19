@@ -90,9 +90,7 @@ export default function SomeInput() {
           <option value={AppMode.webWorkerDedicated}>
             Web Worker(Dedicated)
           </option>
-          <option value={AppMode.webWorkerPool}>
-            Web Worker(Pool, size=20)
-          </option>
+          <option value={AppMode.webWorkerPool}>Web Worker(Pool)</option>
         </Select>
       </FormControl>
     </form>

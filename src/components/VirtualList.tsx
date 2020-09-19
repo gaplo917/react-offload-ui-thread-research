@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-import React, { useContext } from 'react'
+import React, { ReactElement, ReactNode, useContext } from 'react'
 import { AppCtx } from './AppCtx'
 import { List, ListRowRenderer } from 'react-virtualized'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -13,8 +13,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function VirtualList({
+  headerComp,
   rowRendererProvider,
 }: {
+  headerComp?: () => JSX.Element
   rowRendererProvider: (base: number, pow: number) => ListRowRenderer
 }) {
   const classes = useStyles()
@@ -33,6 +35,7 @@ export default function VirtualList({
       <h2>
         Virtual List with {input.rowCount} Items <CircularProgress />
       </h2>
+      {headerComp && headerComp()}
       <p>Scroll fastly to see the UI blocking</p>
       <List
         style={{ border: '1px solid black' }}
