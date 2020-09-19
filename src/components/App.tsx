@@ -10,6 +10,7 @@ import SomeListDedicatedWorker from './SomeListDedicatedWorker'
 import SomeListWorkerPool from './SomeListWorkerPool'
 import { compute } from '../workers/compute'
 import { Box } from '@material-ui/core'
+import './app.css'
 
 function App() {
   const [input, setInput] = useState<InputModel>({
@@ -24,26 +25,6 @@ function App() {
       <div className="App">
         <h1>React Offload UI Thread Research</h1>
         <Box>
-          <p>
-            GitHub Repository:{' '}
-            <a
-              href="https://github.com/gaplo917/react-offload-ui-thread-research"
-              target="_blank"
-              rel="noreferrer"
-            >
-              https://github.com/gaplo917/react-offload-ui-thread-research
-            </a>
-          </p>
-          <p>
-            For detail explanations and more technical R&D, you can visit{' '}
-            <a
-              href="https://www.patreon.com/gaplotech"
-              target="_blank"
-              rel="noreferrer"
-            >
-              https://www.patreon.com/gaplotech
-            </a>
-          </p>
           <p>
             <i>
               * The progress loading dialog is to track UI blocking occurrence
@@ -71,6 +52,28 @@ function App() {
         {mode === AppMode.webWorkerSingleton && <SomeListSingleton />}
         {mode === AppMode.webWorkerDedicated && <SomeListDedicatedWorker />}
         {mode === AppMode.webWorkerPool && <SomeListWorkerPool />}
+
+        <h1>More</h1>
+        <p>
+          GitHub Repository:{' '}
+          <a
+            href="https://github.com/gaplo917/react-offload-ui-thread-research"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://github.com/gaplo917/react-offload-ui-thread-research
+          </a>
+        </p>
+        <p>
+          For detail explanations and more technical R&D, you can visit{' '}
+          <a
+            href="https://www.patreon.com/gaplotech"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://www.patreon.com/gaplotech
+          </a>
+        </p>
       </div>
     </AppCtx.Provider>
   )

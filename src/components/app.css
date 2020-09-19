@@ -1,0 +1,12 @@
+@media (max-width: 700px) and (-webkit-min-device-pixel-ratio: 2) {
+    html {
+        font-size: 60%;
+        zoom: 0.6;
+    }
+}
+@media (max-width: 700px) and (-webkit-min-device-pixel-ratio: 3) {
+    html {
+        font-size: 60%;
+        zoom: 0.6;
+    }
+}
