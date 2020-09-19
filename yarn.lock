@@ -5543,10 +5543,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-suspendable-contract@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-suspendable-contract/-/react-suspendable-contract-0.1.1.tgz#7cd06d02dbc65f401662309e568392b4f019b4d9"
-  integrity sha512-a9gI7y6G4o5kUSDayg1XjwiJIHn5+IUD6AnGbvzIv3Nw31OBrsp2aE7CKRnloq7gG565NfviUH94vwNcY9Y/jA==
+react-suspendable-contract@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-suspendable-contract/-/react-suspendable-contract-0.2.0.tgz#f1e88d259d561e3a1a1cf33785a9f4f560642d0c"
+  integrity sha512-ycHYUDDDpkM1GHk1fM0hvppKrm8OP7tF5ZC/TliwwLUW6I95z1DpeyOQcpjyoUAE4NuAP6ERyCMIYBG2U4SQ5w==
 
 react-transition-group@^4.4.0:
   version "4.4.1"
