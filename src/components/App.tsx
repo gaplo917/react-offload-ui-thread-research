@@ -80,9 +80,9 @@ const Footer = () => (
 )
 function App() {
   const [input, setInput] = useState<InputModel>({
-    base: 200,
-    pow: 2.5,
-    rowCount: 100,
+    base: 150,
+    pow: 2.7,
+    rowCount: 300,
   })
   const [mode, setMode] = useState<AppMode>(AppMode.blocking)
 

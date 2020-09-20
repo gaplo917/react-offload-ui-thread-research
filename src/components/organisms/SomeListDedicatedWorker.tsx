@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // @ts-ignore
 import ComputeWorker from 'comlink-loader!../../workers/compute.worker'
 import { Suspendable, useSuspendableData } from 'react-suspendable-contract'
@@ -15,12 +15,14 @@ interface TabContentProps {
   style: React.CSSProperties
 }
 
+// no way to dispose the worker if using a comlink-loader, until this pr is merged
+// https://github.com/GoogleChromeLabs/comlink-loader/pull/27
 function TabContent({ index, base, pow, style }: TabContentProps) {
-  const worker = new ComputeWorker()
-  const suspendableData = useSuspendableData<number>(
-    () => worker.compute(base, pow),
-    [base, pow],
-  )
+  const suspendableData = useSuspendableData<number>(async () => {
+    const worker = new ComputeWorker()
+    return worker.compute(base, pow)
+  }, [base, pow])
+
   return (
     <p style={{ padding: 8, ...style }}>
       <ErrorBoundary
