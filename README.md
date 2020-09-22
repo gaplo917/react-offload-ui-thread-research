@@ -2,9 +2,9 @@
 
 When we develop a frontend application, we undoubtedly offload all kinds of I/O,
 computational tasks from UI thread to prevent UI thread is too busy and become
-unresponsive. However, this rule doesn't apply to current web development. The
+unresponsive. **However, this rule doesn't apply to current web development**. The
 current web developmennt **ONLY** offload the tasks to web worker when the application
-encounter performance issues but not by the tasks' nature.
+encounter performance issues but **NOT** by the tasks' nature.
 
 [Live Demo](https://gaplo917.github.io/react-offload-ui-thread-research/?v=2)
 
@@ -23,7 +23,7 @@ are unavoidable.
 
 ### Painful and Time-consuming web worker development
 
-Because of the learning curve of Web workers, we are tempted to do everything
+Because of the learning curve of web workers, we are tempted to do everything
 on UI thread like:
 
 - calling fragmented REST call and then **aggregate together**
@@ -41,8 +41,8 @@ It is because:
 As the [ComLink abstraction](https://github.com/GoogleChromeLabs/comlink)(turn a web
 worker to RPC-style function call) and
 [React Concurrent mode](https://reactjs.org/docs/concurrent-mode-intro.html) arise. I
-think it is time to start thinking to adopt web worker **_in all cases_** - completely
-decouple a data accessing layer, use browser's background thread for
+think it is time to start thinking to adopt web worker **_in all cases_** - **completely
+decouple a data accessing layer**, use browser's background thread for
 **ALL** I/O and data processing bu nature and then return to the UI thread for rendering.
 
 Nothing is new, this was how we wrote a standard frontend application in other
