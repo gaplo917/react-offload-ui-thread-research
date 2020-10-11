@@ -10,6 +10,8 @@ import SomeListWorkerPool from './organisms/SomeListWorkerPool'
 import { compute } from '../workers/compute'
 import { Box } from '@material-ui/core'
 import './app.css'
+import { useSuspendableData, Suspendable } from 'react-suspendable-contract'
+import { getExchangeRate } from '../workers/graphql.worker.singleton'
 
 const ModeSwitcher = ({ mode }: { mode: AppMode }) => (
   <>
@@ -85,6 +87,7 @@ function App() {
     rowCount: 300,
   })
   const [mode, setMode] = useState<AppMode>(AppMode.blocking)
+  const sData = useSuspendableData(() => getExchangeRate())
 
   return (
     <AppCtx.Provider value={{ input, setInput, mode, setMode }}>
@@ -93,6 +96,11 @@ function App() {
         <FunctionPreview input={input} />
         <ModeSwitcher mode={mode} />
         <Footer />
+        <React.Suspense fallback={null}>
+          <Suspendable data={sData}>
+            {(data) => <span>{JSON.stringify(data.data)}</span>}
+          </Suspendable>
+        </React.Suspense>
       </div>
     </AppCtx.Provider>
   )
